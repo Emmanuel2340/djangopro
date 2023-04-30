@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">   
+   <body>
+    {% block title %} post category {% endblock %}
+<div class="container">
+    <h1>category</h1>         
+    <div class="form-group">
+        <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-secondary">post category</button>
+         </form>
+    </div>
+</div>
+
+</body>
+</html>
+{% endblock %}

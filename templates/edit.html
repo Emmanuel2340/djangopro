@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+ 
+<body>
+
+    <div class="container">
+        <h1>Edit Post</h1>
+        {% if user.is_authenticated %}
+        <!--Simple Form-->
+            {% if user.id == post.author.id %}
+
+                <img src="" alt="" srcset="">
+                <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <br>
+                <button class="btn btn-primary my-4">Update</button>
+                {% else %}
+                <p>you are not the correct user of this post</p>
+            {% endif %}
+
+        {% else %}
+         <p>please login or create an account</p>
+            
+        {% endif %}
+    </div>
+
+</body>
+</html>
+{% endblock %}

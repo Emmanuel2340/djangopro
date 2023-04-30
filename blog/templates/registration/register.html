@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+<!-- {% load static %} -->
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+</head>
+<body>
+
+    <div class="container">
+        <h1>Register</h1>
+
+        <!--Simple Form-->
+        <form method="POST">
+           {% csrf_token %}
+           {{form.as_p}}
+           <br>
+           <button class="btn btn-dark my-4">Register</button>
+
+           
+    </div>
+   
+</body>
+</html>
+{% endblock %}

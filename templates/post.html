@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">   
+   <body>
+   <div class="container">
+
+      <h1>blog Post</h1>  
+      
+      {% for post in object_list %}
+
+               <ul class="list-group">
+                  <li class="list-group">
+                     <span><a href="{% url 'details' post.pk %}" class=" link text-primary">  {{post.title}} </a> <a href="{% url 'categorypage' post.category|slugify %}">{{post.category}}</a> by - {{post.author}}
+                        {% if user.is_authenticated %}
+                        {% if user.id == post.author.id %}
+                        <a href="{% url 'edit' post.pk %}" class="text-primary">edit Post</a>
+                        <a href="{% url 'delete' post.pk %}" class="text-primary">delete Post</a>
+                        {% endif %}
+                        {%endif%}
+                     {{post.date_post}}  </span>
+                  </li>
+                  <span>{{post.body | slice:":200" | safe}}</span> 
+                  </ul>
+            {% endfor %}
+   </div>
+</body>
+</html>
+{% endblock %}

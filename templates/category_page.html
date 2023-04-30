@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div class="container">
+
+      <h1>{{cats}}</h1>
+      {% for post in category_post%}
+      <ul class="list">
+       {% if category_post %}
+        <li class="list-group-item mb-2">
+           <a href="{% url 'details' post.pk %}" class=" link text-primary">  {{post.title}} </a> {{post.category}} by - {{post.author}} <span>
+              {{post.date_post}}  </span>
+           {% if user.is_authenticated %}
+              {% if user.id == post.author.id %}
+              <a href="{% url 'edit' post.pk %}" class="text-primary">edit Post</a>
+              <a href="{% url 'delete' post.pk %}" class="text-primary">delete Post</a>
+              {% endif %}
+           {%endif%}
+           <br>
+           <span>{{post.body | slice:":200" | safe}}</span>  <span>${{post.price}}</span>  
+         </li>
+      </ul>
+      {% else %}
+      <span>category <strong>{{cats}}  </strong> not found</span>
+      {% endif%}
+      {% endfor%}
+   </div>
+</body>
+</html>
+{% endblock %}
